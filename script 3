@@ -1,0 +1,55 @@
+local Window = Fluent:CreateWindow({
+    Title = "kaus hub " .. Fluent.Version,
+    TabWidth = 160, Size = UDim2.fromOffset(580, 460), Theme = "Dark"
+})
+
+local Tabs = {
+    Main = Window:AddTab({ Title = "levi" }),
+    Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
+}
+--paragrafo... pra avisar os hackers
+Tabs.Main:AddParagraph({ Title = "levi", Content = "auto levi" })
+-- botões
+Tabs.Main:AddButton({ Title = "atac levi", Callback = function()
+      -- Função para usar habilidades
+      function usarHabilidade(nomeHabilidade)
+          local player = game.Players.LocalPlayer
+          local character = player.Character
+          local habilidade = character:FindFirstChild(nomeHabilidade)
+
+          if habilidade and habilidade:FindFirstChild("Activate") then
+              habilidade:Activate()
+          end
+      end
+
+      -- Função para atacar o Leviathan
+      function atacarLeviathan()
+          if not ativado then return end
+          local player = game.Players.LocalPlayer
+          local leviathan = game.Workspace:FindFirstChild("Leviathan")
+
+          if leviathan then
+              for i, segmento in pairs(leviathan:GetChildren()) do
+                  player.Character:MoveTo(segmento.Position)
+                  usarHabilidade("Punch") -- Exemplo de habilidade de luta
+                  usarHabilidade("FruitSkill") -- Exemplo de habilidade de fruta
+                  usarHabilidade("WeaponSkill") -- Exemplo de habilidade de arma
+                  usarHabilidade("SwordSkill") -- Exemplo de habilidade de espada
+                  wait(0.5)
+              end
+          end
+      end
+    end })
+
+Tabs.Main:AddButton({ Title = "levar barco", Callback = function()
+      function levarBarcoParaTiki()
+          if not ativado then return end
+          local player = game.Players.LocalPlayer
+          local barco = game.Workspace:FindFirstChild("SeuBarco")
+          local tikiOutpost = game.Workspace:FindFirstChild("TikiOutpost")
+
+          if barco and tikiOutpost then
+              barco:MoveTo(tikiOutpost.Position)
+          end
+      end
+end
